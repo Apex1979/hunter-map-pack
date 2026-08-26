@@ -1,0 +1,11 @@
+Open this folder. Read GROK.md first. Then review and improve Hunter in place.
+
+Do not create a new app. Do not auto-post. Do not block other companies’ ads.
+
+Spec is already enforced:
+- Rank null → BUILD (ads blocked, no GBP post)
+- Rank 4+ → STEAL (ads blocked + GBP draft)
+- Rank 1–3 → PROTECT (keep bidding + freshness draft)
+- Human tap (Approve) before anything is posted
+
+Upgrade the product so it dominates. Keep the single dark page: Run Hunter → Build / Steal / Protect → Approve / Reject.
