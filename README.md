@@ -6,6 +6,8 @@ A single dark command page for local map-pack operations.
 
 This is a complete operator surface, not a mock slide. Hunter scans a 5×5 query × geo grid for your brand, classifies every cell from rank, stages **your** ad pauses and GBP drafts, and will not post or pause until a human taps Approve.
 
+Default brand: **Storm Master Roofing** (Minnetonka / west metro).
+
 ## Spec (enforced in code)
 
 | Rank | Lane | Ads | GBP |
@@ -31,7 +33,7 @@ Open [http://localhost:43127](http://localhost:43127).
 
 ## How to use it
 
-1. Pick a market (Austin HVAC, Phoenix plumbing, Miami roofing).
+1. Market defaults to **Minnetonka · Roofing · Storm Master Roofing**. Other demos: Austin HVAC, Phoenix plumbing, Miami roofing.
 2. Hit **Run Hunter** (or `R`). The grid lights up cell by cell.
 3. Read the three lanes. Click a cell for pack evidence and the auction rail.
 4. Work the approval dock: **Approve** (`A`) or **Reject** (`X`). `J` / `K` moves the queue.
@@ -56,6 +58,7 @@ Then:
 
 - `lib/hunter/classify.ts` — rank → lane, ads policy, GBP policy
 - `lib/hunter/engine.ts` — grid, heatmap, `assertOwnAdsOnly`
+- `lib/hunter/markets.ts` — Storm Master is first
 - `components/hunter/command-center.tsx` — hunt loop, keyboard, human gate
 - `components/hunter/approvals.tsx` — Approve / Reject, draft preview
 

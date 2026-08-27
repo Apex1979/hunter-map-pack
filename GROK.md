@@ -12,7 +12,8 @@ One dark page:
 
 Hunter scans a 5×5 local-pack grid (query × geo) for *our* brand. It classifies each cell from map-pack rank, stages **our** ad pauses and GBP drafts, and will not post or pause until a human taps Approve.
 
-Demo markets: Austin HVAC (Northstar Mechanical), Phoenix plumbing (Redline Rooter), Miami roofing (Harborline Roofing).
+Default market: **Storm Master Roofing · Minnetonka, MN** (west metro: Eden Prairie, Plymouth, Wayzata, Hopkins, St Louis Park, Excelsior).
+Also demo: Austin HVAC (Northstar Mechanical), Phoenix plumbing (Redline Rooter), Miami roofing (Harborline Roofing).
 
 Ranks and GBP copy are a **deterministic simulation** so the app runs without Google credentials. The classifier, own-ads invariant, and human gate are real. If you wire live APIs, swap `runHunt()` — do not change the page contract.
 
@@ -21,7 +22,7 @@ Ranks and GBP copy are a **deterministic simulation** so the app runs without Go
 | Rank | Lane | Ads | GBP |
 | --- | --- | --- | --- |
 | `null` (missing) | BUILD | blocked | none |
-| `4+` | STEAL | blocked | climb draft queued |
+| `4+` | STEAL | ads blocked | climb draft queued |
 | `1–3` | PROTECT | keep bidding | freshness draft queued |
 
 Hard rules:
@@ -29,13 +30,14 @@ Hard rules:
 - Human tap before anything is posted. No batch-approve of posts. No auto-post.
 - Hunter does **not** block other companies’ ads. Pauses bind to this account id and brand. Competitor auctions render as `UNTOUCHED`. The engine must throw if a mutation targets a foreign account or a competitor name.
 - BUILD does not get a GBP post. Presence is the work.
+- No waive-deductible or guaranteed insurance language in GBP drafts.
 
 ## Start here
 
 ```
 lib/hunter/classify.ts              rank → lane, ads policy, GBP policy
 lib/hunter/engine.ts                grid, heatmap, assertOwnAdsOnly
-lib/hunter/markets.ts               brands, queries, neighborhoods
+lib/hunter/markets.ts               brands, queries, neighborhoods — Storm Master is first
 components/hunter/command-center.tsx  hunt loop, keyboard, gate
 components/hunter/approvals.tsx     Approve / Reject, draft preview
 components/hunter/lanes.tsx         three columns + mobile tabs
